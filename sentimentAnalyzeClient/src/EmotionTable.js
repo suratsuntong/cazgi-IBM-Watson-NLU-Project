@@ -2,20 +2,20 @@ import React from 'react';
 import './bootstrap.min.css';
 
 class EmotionTable extends React.Component {
+    emotionDataRenderer() {
+        const data = this.props.emotions;
+        return Object.keys(data).map(function(emo) {
+            return <tr><td>{emo}</td><td>{data[emo]}</td></tr>
+        })
+    }
+ 
     render() {
       return (  
         <div>
           <table className="table table-bordered">
             <tbody>
             {
-                Object.keys(JSON.stringify(this.props.emotions)).map(
-                    function(value, idx) {
-                    return <tr id={idx}>
-                        <td>{value}</td>
-                        <td>{JSON.stringify(this.props.emotions)[value]}</td>
-                        </tr>
-                    }
-                )
+                this.emotionDataRenderer()
             }
             </tbody>
           </table>
